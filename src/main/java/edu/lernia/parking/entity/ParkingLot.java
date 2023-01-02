@@ -15,7 +15,11 @@ public class ParkingLot {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
+    private String name;
+
     private Point cordinates;
+
+
 
     // Constructor
     public ParkingLot() {}
@@ -28,6 +32,14 @@ public class ParkingLot {
         this.id = id;
     }
 
+    public String getName() {
+      return name;
+    }
+
+    public void setName(String name) {
+      this.name = name;
+    }
+
     public Point getCordinates() {
         return cordinates;
     }
@@ -35,6 +47,5 @@ public class ParkingLot {
     public void setCordinates(Point cordinates) {
         this.cordinates = cordinates;
     }
-
     
 }
