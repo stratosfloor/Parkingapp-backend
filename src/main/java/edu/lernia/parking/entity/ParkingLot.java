@@ -42,11 +42,11 @@ public class ParkingLot {
       this.name = name;
     }
 
-    public Point getCordinates() {
+    public Point<G2D> getCordinates() {
         return cordinates;
     }
 
-    public void setCordinates(Point cordinates) {
+    public void setCordinates(Point<G2D> cordinates) {
         this.cordinates = cordinates;
     }
     
