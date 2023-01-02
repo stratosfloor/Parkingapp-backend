@@ -37,5 +37,18 @@ public class CarController {
     return ResponseEntity.notFound().build();
   }
 
-
+  @PostMapping()
+  public ResponseEntity<Car> addNewCar(@RequestBody Car car) {
+    if (car.getPerson() == null) {
+      return ResponseEntity.badRequest().build();
+    }
+    var c = carRepository.save(car);
+    return ResponseEntity
+      .created(ServletUriComponentsBuilder
+      .fromCurrentRequest()
+      .path("/{id}")
+      .buildAndExpand(c.getId())
+      .toUri())
+      .body(c);
+  }
 }
