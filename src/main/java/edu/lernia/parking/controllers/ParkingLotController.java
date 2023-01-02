@@ -5,8 +5,11 @@ import java.util.Optional;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import edu.lernia.parking.entity.ParkingLot;
 import edu.lernia.parking.repository.ParkingLotRepository;
@@ -33,7 +36,17 @@ public class ParkingLotController {
       return ResponseEntity.ok().body(lot);
     }
     return ResponseEntity.notFound().build();
+  }
 
+  @PostMapping
+  public ResponseEntity<ParkingLot> createNewParkingLot(@RequestBody ParkingLot parkinglot) {
+    var p = parkingLotRepository.save(parkinglot);
+    return ResponseEntity
+      .created(ServletUriComponentsBuilder
+      .fromCurrentRequest()
+      .buildAndExpand(p.getId())
+      .toUri())
+      .body(p);
   }
   
 }
