@@ -29,15 +29,17 @@ public class ApplicationConfig {
 
         Car car1 = new Car();
         car1.setRegnr("LMA714");
-        car1.setOwner(p1);
+        car1.setPerson(p1);
         carRepository.save(car1);
 
         Car car2 = new Car();
         car2.setRegnr("ABC123");
+        car2.setPerson(p1);
         carRepository.save(car2);
 
         Car car3 = new Car();
         car3.setRegnr("HPB857");
+        car3.setPerson(p2);
         carRepository.save(car3);
       };
   }
