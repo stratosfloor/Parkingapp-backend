@@ -1,6 +1,10 @@
 package edu.lernia.parking.controllers;
 
+import java.util.Optional;
+
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -17,9 +21,19 @@ public class ParkingLotController {
     this.parkingLotRepository = parkingLotRepository;
   }
 
-  @GetMapping
+  @GetMapping()
   public Iterable<ParkingLot> getAllParkingLots() {
     return parkingLotRepository.findAll();
+  }
+
+  @GetMapping("/{id}")
+  public ResponseEntity<Optional<ParkingLot>> getParkingLotById(@PathVariable("id") Long id) {
+    var lot = parkingLotRepository.findById(id);
+    if(lot.isPresent()) {
+      return ResponseEntity.ok().body(lot);
+    }
+    return ResponseEntity.notFound().build();
+
   }
   
 }
