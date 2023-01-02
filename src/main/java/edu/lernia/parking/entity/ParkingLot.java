@@ -1,6 +1,8 @@
 package edu.lernia.parking.entity;
 
-import org.springframework.data.geo.Point;
+
+import org.geolatte.geom.G2D;
+import org.geolatte.geom.Point;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -17,7 +19,7 @@ public class ParkingLot {
     
     private String name;
 
-    private Point cordinates;
+    private Point<G2D> cordinates;
 
 
 
