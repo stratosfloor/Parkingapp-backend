@@ -5,6 +5,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Car {
@@ -17,7 +18,8 @@ public class Car {
     @Column(length = 6)
     private String regnr;
 
-    private Person owner;
+    @ManyToOne
+    private Person person;
 
 
     // Constructor
@@ -44,13 +46,13 @@ public class Car {
     }
 
 
-    public Person getOwner() {
-        return owner;
+    public Person getPerson() {
+        return person;
     }
 
 
-    public void setOwner(Person owner) {
-        this.owner = owner;
+    public void setPerson(Person person) {
+        this.person = person;
     }
 
     
