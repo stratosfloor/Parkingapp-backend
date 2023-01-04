@@ -6,6 +6,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 
 @Entity
 public class Car {
@@ -20,6 +21,9 @@ public class Car {
 
     @ManyToOne
     private Person person;
+
+    @OneToOne
+    private ParkingEvent parkingEvent;
 
 
     // Constructor

@@ -22,6 +22,9 @@ public class Person {
     @OneToMany(mappedBy = "person", cascade = CascadeType.PERSIST)
     private List<Car> cars;
 
+    @OneToMany(mappedBy = "person", cascade = CascadeType.PERSIST)
+    private List<ParkingEvent> parkingEvents;
+
     public Person() {
 
     }
