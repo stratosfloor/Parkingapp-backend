@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import edu.lernia.parking.entity.Car;
 import edu.lernia.parking.entity.Person;
 import edu.lernia.parking.repository.CarRepository;
 import edu.lernia.parking.repository.PersonRepository;
@@ -23,9 +24,11 @@ import edu.lernia.parking.repository.PersonRepository;
 public class PersonController {
 
   PersonRepository personRepository;
+  CarRepository carRepository;
 
-  public PersonController(PersonRepository personRepository) {
+  public PersonController(PersonRepository personRepository, CarRepository carRepository) {
     this.personRepository = personRepository;
+    this.carRepository = carRepository;
   }
 
   @GetMapping()
@@ -52,8 +55,12 @@ public class PersonController {
       .buildAndExpand(p.getId())
       .toUri())
       .body(p);
-      
-      
+  }
+
+  @GetMapping("/{id}/cars")
+  public List<Car> getAllCarsForPerson(@PathVariable("id") Long id) {
+    return carRepository.findCarsByPersonId(id);
+    
   }
 
 }
