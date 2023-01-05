@@ -12,4 +12,7 @@ public interface ParkingEventRepository extends CrudRepository<ParkingEvent, Lon
   List<ParkingEvent> findAll();
   
   List<ParkingEvent> findParkingEventsByCarId(Long id);
+
+  List<ParkingEvent> findParkingEventsByPersonId(Long id);
+  
 }
