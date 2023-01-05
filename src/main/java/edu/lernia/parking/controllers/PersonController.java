@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -70,9 +71,16 @@ public class PersonController {
     
   }
 
-  @GetMapping("/{id}/parkingevents")
+  // All parkingevents for id
+  @GetMapping("{id}/parkingevents")
   public List<ParkingEvent> getAllParkingEventsForAPerson(@PathVariable("id") Long id) {
     return parkingEventRepository.findParkingEventsByPersonId(id);
   }
 
+  // All parkingevents with parameter active = true/false
+  @GetMapping(path = "/{id}/parkingevents", params = "active")
+  public List<ParkingEvent> getAllParkingEventsForAPerson(@PathVariable("id") Long id, @RequestParam Boolean active) {
+    return parkingEventRepository.findAllParkingEventsByPersonIdAndActive(id, active);
+
+  }
 }
