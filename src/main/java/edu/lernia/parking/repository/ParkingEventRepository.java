@@ -22,5 +22,9 @@ public interface ParkingEventRepository extends CrudRepository<ParkingEvent, Lon
       """)
   List<ParkingEvent> findAllParkingEventsByPersonIdAndActive(@Param("personId") Long personId, @Param("active") Boolean active);
 
+  @Query("""
+      SELECT p from ParkingEvent p WHERE p.car.id = :carId AND p.active =:active
+      """)
+  List<ParkingEvent> findAllParkingEventsByCarIdAndActive(@Param("carId") Long carId, @Param("active") Boolean active);
 
 }

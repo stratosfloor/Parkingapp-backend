@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -60,5 +61,10 @@ public class CarController {
   @GetMapping("/{id}/parkingevents")
   public List<ParkingEvent> getACarsParkingEvent(@PathVariable("id") Long id) {
     return parkingEventRepository.findParkingEventsByCarId(id);
+  }
+
+  @GetMapping(path = "/{id}/parkingevents", params = "acitve")
+  public List<ParkingEvent> getAllParkingEventsByCarIdAndAcitve(@PathVariable("id") Long id, @RequestParam Boolean active) {
+    return parkingEventRepository.findAllParkingEventsByCarIdAndActive(id, active);
   }
 }
