@@ -1,6 +1,7 @@
 package edu.lernia.parking.entity;
 
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -25,8 +26,8 @@ public class ParkingEvent {
   @OneToOne
   private ParkingLot parkingLot;
   
-  private LocalDateTime startTime = LocalDateTime.now();
-  private LocalDateTime stopTime;
+  private LocalDateTime startTime = LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES);
+  private LocalDateTime stopTime = startTime.plusHours(24);
   private Boolean active=true;
 
 
